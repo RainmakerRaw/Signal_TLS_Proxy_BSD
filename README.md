@@ -12,7 +12,7 @@ This nginx.conf is updated to reflect those changes and allow the user to run a 
 
 (1) Install acme.sh or certbot (or similar) and obtain a cert for your domain. That's outside of the scope of this brief guide, but essentially culminates with `certbot --certonly -D domain.xyz`. 
 
-(2) Amend the enclosed nginx.conf to fit your requirements. Change `DOMAIN` to reflect the domain on which your proxy will run (e.g. `domain.xyz`), and `PATH` to the location in which your certs from step (1) are stored (e.g. `/usr/local/etc/letsencrypt/live/domain.xyz/fullchain.pem`).
+(2) Amend the enclosed nginx.conf to fit your requirements. Change `PATH` to the location in which your certs from step (1) are stored (e.g. `/usr/local/etc/letsencrypt/live/domain.xyz/fullchain.pem`).
 
 (3) Install nginx (`pkg install nginx`) and move this nginx.conf to `/usr/local/etc/nginx/nginx.conf`. Don't forget your changes from step (2)!
 
