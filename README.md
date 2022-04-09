@@ -22,4 +22,4 @@ This nginx.conf is updated to reflect those changes and allow the user to run a 
 
 (6) If you have the IPFW running, you'll need to allow at least ports 80/tcp and 443/tcp. You can drop port 80 once you have your certs if required, the proxy runs on 443/tcp. Something like `ipfw -q add allow tcp from any to any 443 setup keep-state` will work. 
 
-The proxy is now live, and you can share it in the normal way using `https://signal.tube/#domain.xyz`, congratulations! 
+The proxy is now live, and you can share it in the normal way using `https://signal.tube/#domain.xyz`. Congratulations! 
