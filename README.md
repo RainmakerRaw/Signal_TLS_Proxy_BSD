@@ -1,5 +1,5 @@
 # Signal TLS Proxy for FreeBSD
-An nginx.conf allowing FreeBSD to run a Signal TLS Proxy (#IranASignanProxy)
+An nginx.conf allowing FreeBSD to run a Signal TLS Proxy (#IranASignalProxy)
 
 ### Rationale
 Having run Signal proxies since their inception, I wanted to move to FreeBSD as the host OS. Signal advertise only Docker as the way to run a proxy. While this is somewhat easy (if you know Docker) and can be stable once running, it's also somewhat convoluted and requires the user to install Docker if the host OS doesn't include it by default.  
