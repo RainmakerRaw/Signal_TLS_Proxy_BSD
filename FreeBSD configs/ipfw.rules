@@ -1,3 +1,6 @@
+### FreeBSD firewall config for Signal proxies
+### https://github.com/RainmakerRaw/Signal_TLS_Proxy_BSD
+#
 #!/bin/sh
 # Flush out the list before we begin.
 ipfw -q -f flush
