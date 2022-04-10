@@ -21,6 +21,7 @@ The FreeBSD portion of this repo contains my nginx.conf as updated to reflect th
 (5) Done! The proxy is now online. 
 
 (6) If you have the IPFW running (and you should!), you'll need to allow at least ports 80/tcp and 443/tcp. You can drop port 80 once you have your certs if required, the proxy runs on 443/tcp. There is a basic config (block hostiles, allow 80/tcp and 443/tcp) in the `FreeBSD` folder.  
+  
 The config includes ipv6, and you can safely leave this in (or remove it) if you don't have IPv6 connectivity on your server. Make sure to change WAN_INTERFACE to the name of your server's WAN/external/egress interface in the config before applying it with `ipfw service restart`. See [The FreeBSD Handbook](https://docs.freebsd.org/en/books/handbook/firewalls/#firewalls-ipfw) for details on how to enable IPFW in the first place.  
 
 ## Steps to run a Signal TLS proxy on OpenBSD
@@ -36,7 +37,7 @@ The config includes ipv6, and you can safely leave this in (or remove it) if you
 (5) Done! The proxy is now online. 
 
 (6) If you have the `pf` running (and you should!), you'll need to allow at least ports 80/tcp and 443/tcp. You can drop port 80 once you have your certs if required, the proxy runs on 443/tcp. There is a basic config (block hostiles, allow 80/tcp and 443/tcp) in the `OpenBSD` folder.  
-
+  
 The config includes ipv6, and you can safely leave this in (or remove it) if you don't have IPv6 connectivity on your server. Make sure to change WAN_INTERFACE to the name of your server's WAN/external/egress interface in the config before applying it with `pfctl -f /etc/pf.conf`. See [OpenBSD's pf documentation](https://www.openbsd.org/faq/pf/) for details on how to enable pf in the first place, but it's basically a case of copy in the config, then `pfctl -f /etc/pf.conf` to load the config, then finally `pfctl -e` to enable pf.  
 
 ##
