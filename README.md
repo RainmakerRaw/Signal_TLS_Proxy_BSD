@@ -1,4 +1,4 @@
-# Signal TLS Proxy for FreeBSD & OpenBSD
+# Signal TLS Proxies, for FreeBSD & OpenBSD. No Docker required!
 An nginx.conf and other basic security configs, allowing FreeBSD and OpenBSD to run a Signal TLS Proxy (#IranASignalProxy)
 
 ## Rationale
