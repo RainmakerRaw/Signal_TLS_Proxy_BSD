@@ -1,1 +1,4 @@
 @eaDir
+.gitignore
+.DS_Store
+
