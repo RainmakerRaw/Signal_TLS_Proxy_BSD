@@ -6,9 +6,9 @@ Having run Signal proxies using Docker on Linux since their inception, I wanted 
 
 Finally, I kept bumping into stupid issues such as Ubuntu pushing an update that hosed all my proxies at the same time (killed the net config), or a kernel update rebooting the machine and having it not come back up again. Runnning one of the BSDs avoids all this drama. It allows a simple, Docker free, systemd free, and 'change everything, all the time, because reasons' attitude-free setup, balanced across multiple OS so that one bad update/config/server doesn't take down your whole infrastructure.  
 
-There are real, live, sometimes desperate human beings at the other end of these proxies. They are also, often, in perilous situations where their privacy and security are one and the same thing. Having all your available proxies go down because $distro pushed an update that borked your whole infrastructure is obviously not good. Now, with these configs, you can run a Linux VPS, and a FreeBSD VPS (on QUARTERLY or CURRENT package updates, or both) and an OpenBSD VPS.  
+There are real, live, sometimes desperate human beings at the other end of these proxies. They are also, often in perilous situations where their privacy and security are one and the same thing. Having all your available proxies go down because $distro pushed an update that borked your whole infrastructure is obviously not good. Now, with these configs, you can run a Linux VPS, and a FreeBSD VPS (on QUARTERLY or CURRENT package updates, or both) and an OpenBSD VPS.  
 
-If one breaks or goes down or has a bad update, you have options. Redundancy! I can't tell you how stressful it is to have hundreds of users, from  dozens of countries, all sending you messages pleading that the proxy is down at the same time... and you're out of options, because your servers are cattle, but all the same *kind* of cattle. This way, you can say 'Sorry about that, here's two more that **do** work!'. Peace of mind is priceless, for you and your users; but unfortunately VPS are not! I'm spending a fortune - who wants to sponsor me some slots? Netcup? Vultr? Linode? DO? Anyone??...
+If one breaks or goes down or has a bad update, you have options. Redundancy! I can't tell you how stressful it is to have hundreds of users, from  dozens of countries, all sending you messages at the same time pleading that the proxy is down... and you're out of options, because your servers are cattle, but all the same *kind* of cattle. This way, you can say 'Sorry about that, here's two more that **do** work!'. Peace of mind is priceless, for you and your users; but unfortunately VPS are not! I'm spending a fortune - who wants to sponsor me some slots? Netcup? Vultr? Linode? DO? Anyone??...
 
 Because they're stable, sane and nice to work with, I prefer the BSDs. Having followed [Neel Chauhan's guide here](https://www.neelc.org/posts/freebsd-signal-proxy/), the proxy didn't work. Upon review of the [official Signal nginx config](https://github.com/signalapp/Signal-TLS-Proxy/blob/master/data/nginx-relay/nginx.conf) (which makes up part of their Docker setup), it became apparent that the upstream URLs the Signal messenger app connects to had changed.  
 
@@ -18,7 +18,7 @@ The FreeBSD portion of this repo contains my nginx.conf as updated to reflect th
 
 (1) Install acme.sh or certbot (or similar) and obtain a cert for your domain. That's outside of the scope of this brief guide, but essentially culminates with `certbot --certonly -D domain.xyz`. 
 
-(2) Amend the enclosed nginx.conf to fit your requirements. Change `PATH` to the location in which your certs from step (1) are stored (e.g. `/usr/local/etc/letsencrypt/live/domain.xyz/fullchain.pem`).
+((2) Amend the enclosed nginx.conf to fit your requirements. Change `DOMAIN` accordinly in the ssl_certificate paths, which should reflect where your certs from step are stored (e.g. `/etc/letsencrypt/live/domain.xyz/fullchain.pem`).
 
 (3) Install nginx (`pkg install nginx`) and move this nginx.conf to `/usr/local/etc/nginx/nginx.conf`. Don't forget your changes from step *(2)*!
 
@@ -34,7 +34,7 @@ Because of IPFW's syntax, the config includes ipv6 by default. It doesn't matter
 
 (1) Install one of the acme* packages or certbot (or similar), and obtain a cert for your domain. That's outside of the scope of this brief guide, but essentially culminates with `certbot --certonly -D domain.xyz`. 
 
-(2) Amend the enclosed nginx.conf to fit your requirements. Change `PATH` to the location in which your certs from step are stored (e.g. `/etc/letsencrypt/live/tahm.xyz/fullchain.pem`).
+(2) Amend the enclosed nginx.conf to fit your requirements. Change `DOMAIN` accordinly in the ssl_certificate paths, which should reflect where your certs from step are stored (e.g. `/etc/letsencrypt/live/domain.xyz/fullchain.pem`).
 
 (3) Install nginx (`pkg_add nginx nginx-stream`) and move this nginx.conf to `/etc/nginx/nginx.conf`. Don't forget your changes from step *(2)*!
 
