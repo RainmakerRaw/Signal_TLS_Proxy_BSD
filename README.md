@@ -12,11 +12,13 @@ If one breaks or goes down or has a bad update, you have options. Redundancy! I 
 
 Because they're stable, sane and nice to work with, I prefer the BSDs. Having followed [Neel Chauhan's guide here](https://www.neelc.org/posts/freebsd-signal-proxy/), the proxy didn't work. Upon review of the [official Signal nginx config](https://github.com/signalapp/Signal-TLS-Proxy/blob/master/data/nginx-relay/nginx.conf) (which makes up part of their Docker setup), it became apparent that the upstream URLs the Signal messenger app connects to had changed.  
 
-The FreeBSD portion of this repo contains my nginx.conf as updated to reflect those upstream changes, and allows the user to run a Signal proxy on FreeBSD. I then further refined the config to work on OpenBSD 7.0 (which was trivial). I supply those configs and related security files (firewall configs, sshguard configs) for my own use, and in the hope that they help someone else likewise wishing to host Signal TLS proxies on the BSDs. 
+The FreeBSD portion of this repo contains my nginx.conf as updated to reflect those upstream changes, and allows the user to run a Signal proxy on FreeBSD. I then further refined the config to work on OpenBSD 7.0 (which was trivial). I supply those configs and related security files (firewall configs, sshguard configs) for my own use, and in the hope that they help someone else likewise wishing to host Signal TLS proxies on the BSDs.  
+
+This guide assumes your server already has basic hardening (`sshguard` and `ipfw` enabled etc).  
 
 ## Steps to run a Signal TLS proxy on FreeBSD
 
-(1) Install acme.sh or certbot (or similar) and obtain a cert for your domain. That's outside of the scope of this brief guide, but essentially culminates with `certbot --certonly -D domain.xyz`. 
+(1) Install acme.sh or certbot (or similar) and obtain a cert for your domain. That's outside of the scope of this brief guide, but essentially culminates with `certbot certonly -d domain.xyz`. 
 
 ((2) Amend the enclosed nginx.conf to fit your requirements. Change `DOMAIN` accordinly in the ssl_certificate paths, which should reflect where your certs from step are stored (e.g. `/etc/letsencrypt/live/domain.xyz/fullchain.pem`).
 
@@ -32,7 +34,7 @@ Because of IPFW's syntax, the config includes ipv6 by default. It doesn't matter
 
 ## Steps to run a Signal TLS proxy on OpenBSD
 
-(1) Install one of the acme* packages or certbot (or similar), and obtain a cert for your domain. That's outside of the scope of this brief guide, but essentially culminates with `certbot --certonly -D domain.xyz`. 
+(1) Install one of the acme* packages or certbot (or similar), and obtain a cert for your domain. That's outside of the scope of this brief guide, but essentially culminates with `certbot certonly -d domain.xyz`. 
 
 (2) Amend the enclosed nginx.conf to fit your requirements. Change `DOMAIN` accordinly in the ssl_certificate paths, which should reflect where your certs from step are stored (e.g. `/etc/letsencrypt/live/domain.xyz/fullchain.pem`).
 
