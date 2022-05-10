@@ -50,7 +50,7 @@ This brief guide assumes your OS already has basic hardening tools installed (i.
 
 (5) Done! The proxy is now online. 
 
-(6) If you have the IPFW running (and you should!), you'll need to allow at least ports 80/tcp for Certbot and 443/tcp for the Nginx proxy itself. There is a basic config (block hostiles, allow established connections, allow new connections in on 80/tcp and 443/tcp) in the `FreeBSD` folder.  
+(6) If you have the IPFW running (and you should!), you'll need to allow at least ports 80/tcp for Certbot and 443/tcp for the Nginx proxy itself. There is a basic config to block hostiles and allow the basic ports (ssh, 80 and 443) in the `FreeBSD` folder.  
 
 Because of IPFW's syntax, the config includes ipv6 by default. It doesn't matter whether you actually have it available on your server or not. Make sure to change WAN_INTERFACE to the name of your server's WAN/external/egress interface in the config before applying it with `ipfw service restart`. See [The FreeBSD Handbook](https://docs.freebsd.org/en/books/handbook/firewalls/#firewalls-ipfw) for details on how to enable IPFW in the first place.  
 
@@ -66,7 +66,7 @@ Because of IPFW's syntax, the config includes ipv6 by default. It doesn't matter
 
 (5) Done! The proxy is now online. 
 
-(6) If you have the `pf` running (and you should!), you'll need to allow at least ports 80/tcp for Certbot and 443/tcp for the Nginx proxy itself. There is a basic config (block hostiles, allow established connections, allow new connections in on 80/tcp and 443/tcp) in the `OpenBSD` folder.  
+(6) If you have the `pf` running (and you should!), you'll need to allow at least ports 80/tcp for Certbot and 443/tcp for the Nginx proxy itself. There is a basic config to block hostiles and allow the basic ports (ssh, 80 and 443) in the `OpenBSD` folder.  
 
 The `pf.conf` includes rules for IPv6, and you can safely leave this in (or remove it) if you don't have IPv6 connectivity on your server. See [OpenBSD's pf documentation](https://www.openbsd.org/faq/pf/) for details on how to enable pf in the first place, but it's basically a case of copy in the config to `/etc/pf.conf`, then `pfctl -f /etc/pf.conf` to load the config, then finally `pfctl -e` to enable pf.  
 
